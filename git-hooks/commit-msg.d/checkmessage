@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eu
+
+# This hook will make sure that people are writing commit messages that comply with our standards
+# http://chris.beams.io/posts/git-commit/
+
+# Rule 4 start with capital letter
+
+if ! grep --quiet '^[A-Z]' $1
+then
+    echo "Commit messages must start with a capital letter!"
+    exit 1
+fi
