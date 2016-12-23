@@ -1,0 +1,14 @@
+language: sh
+
+os:
+  - linux
+  - osx
+
+before_install:
+  - git clone git://github.com/bmizerany/roundup
+  - cd roundup
+  - ./configure
+  - make
+  - export PATH="$PATH:$PWD"
+  - cd -
+script: make
