@@ -1,4 +1,4 @@
-# git-hook-commit-message-cbeams
+# git-hook-commit-message-cbeams [![Build Status](https://travis-ci.org/aaronjameslang/git-hook-commit-message-cbeams.svg)](https://travis-ci.org/aaronjameslang/git-hook-commit-message-cbeams)
 Git hook to check conformance to http://chris.beams.io/posts/git-commit/
 
 ## The seven rules of a great git commit message
