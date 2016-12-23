@@ -10,3 +10,7 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
  5. Use the imperative mood in the subject line
  6. Wrap the body at 72 characters
  7. Use the body to explain _what_ and _why_ vs. _how_
+
+## Development
+
+Requires `roundup` to run tests (https://bmizerany.github.io/roundup/)
