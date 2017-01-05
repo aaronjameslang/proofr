@@ -4,6 +4,6 @@ os:
   - linux
   - osx
 
-before_install: command -v brew >/dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && PATH="$PATH:$HOME/.linuxbrew/bin"
+before_install: command -v brew >/dev/null 2>&1 || < /dev/null ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && PATH="$PATH:$HOME/.linuxbrew/bin"
 
 script: make
