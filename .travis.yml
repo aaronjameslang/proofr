@@ -1,9 +1,15 @@
 language: sh
-
-os:
-  - linux
-  - osx
-
-before_install: command -v brew >/dev/null 2>&1 || < /dev/null ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && PATH="$PATH:$HOME/.linuxbrew/bin"
-
 script: make
+matrix:
+  include:
+    - os: osx
+    - os: linux
+      before_install:
+        - git clone git://github.com/bmizerany/roundup
+        - cd roundup
+        - ./configure
+        - make
+        - export PATH="$PATH:$PWD"
+        - cd -
+    - os: linux
+      before_install: command -v brew >/dev/null 2>&1 || < /dev/null ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)" && PATH="$PATH:$HOME/.linuxbrew/bin"
