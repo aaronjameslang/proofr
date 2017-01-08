@@ -1,4 +1,4 @@
 test:
-	roundup test/*-test.sh
+	./test.sh
 
 .PHONY: test
