@@ -2,7 +2,7 @@
 set -eu
 
 rule="./rules/03-capital.sh"
-msg_dir=$PWD/test/03-capital
+msg_dir=$PWD/test/messages
 
 it_passes_empty() {
   output="$($rule $msg_dir/empty.msg)"
@@ -14,8 +14,8 @@ it_passes_blank() {
   test -z "$output"
 }
 
-it_passes_capital() {
-  output="$($rule $msg_dir/capital.msg)"
+it_passes_perfect() {
+  output="$($rule $msg_dir/perfect.msg)"
   test -z "$output"
 }
 
