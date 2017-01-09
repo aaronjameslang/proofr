@@ -2,7 +2,7 @@
 set -eu
 
 rule="./rules/01-separate.sh"
-msg_dir=$PWD/test/01-separate
+msg_dir=$PWD/test/messages
 
 it_passes_empty() {
   output="$($rule "$msg_dir/empty.msg")"
@@ -19,12 +19,12 @@ it_passes_subject_only() {
   test -z "$output"
 }
 
-it_passes_separate() {
-  output="$($rule "$msg_dir/separate.msg")"
+it_passes_perfect() {
+  output="$($rule "$msg_dir/perfect.msg")"
   test -z "$output"
 }
 
-it_fails_not_separate() {
-  output="$(! $rule "$msg_dir/not-separate.msg")"
+it_fails_body_only() {
+  output="$(! $rule "$msg_dir/body-only.msg")"
   test -z "$output"
 }
