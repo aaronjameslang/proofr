@@ -1,7 +1,7 @@
 #! /bin/sh
 set -eu
 
-rule="./rules/01-separate.sh"
+rule="./src/01-separate.sh"
 msg_dir=$PWD/test/messages
 
 it_passes_empty() {

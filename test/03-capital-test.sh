@@ -1,7 +1,7 @@
 #! /bin/sh
 set -eu
 
-rule="./rules/03-capital.sh"
+rule="./src/03-capital.sh"
 msg_dir=$PWD/test/messages
 
 it_passes_empty() {
