@@ -33,6 +33,7 @@ it_fails_lower_case() {
 
 it_fails_worst() {
   output="$($rule $msg_dir/worst.msg)" || exit_code=$?
-  test 2 -eq $exit_code
-  test "$output" == 'Separate subject from body with a blank line'
+  test 10 -eq $exit_code
+  test "$output" == 'Separate subject from body with a blank line
+Capitalize the subject line'
 }
