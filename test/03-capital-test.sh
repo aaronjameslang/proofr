@@ -1,8 +1,9 @@
 #! /bin/sh
 set -eu
 
-rule="./rules/03-capital.sh"
+rule="./src/03-capital.sh"
 msg_dir=$PWD/test/messages
+error_message='Capitalize the subject line'
 
 it_passes_empty() {
   output="$($rule $msg_dir/empty.msg)"
@@ -21,5 +22,5 @@ it_passes_perfect() {
 
 it_fails_lower_case() {
   output="$(! $rule $msg_dir/lower-case.msg)"
-  test -z "$output"
+  test "$error_message" == "$output"
 }

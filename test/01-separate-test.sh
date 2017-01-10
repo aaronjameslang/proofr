@@ -1,8 +1,9 @@
 #! /bin/sh
 set -eu
 
-rule="./rules/01-separate.sh"
+rule="./src/01-separate.sh"
 msg_dir=$PWD/test/messages
+error_message='Separate subject from body with a blank line'
 
 it_passes_empty() {
   output="$($rule "$msg_dir/empty.msg")"
@@ -26,5 +27,5 @@ it_passes_perfect() {
 
 it_fails_body_only() {
   output="$(! $rule "$msg_dir/body-only.msg")"
-  test -z "$output"
+  test "$error_message" == "$output"
 }
