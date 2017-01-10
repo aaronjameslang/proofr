@@ -6,7 +6,7 @@ have () {
 }
 
 find_scripts () {
-  find . -perm -u=x -type f | grep --invert-match '\.git'
+  find . -type f \( -name '*.sh' -o -perm -u=x \) | grep --invert-match '\.git'
 }
 
 if ! have shellcheck && have brew
