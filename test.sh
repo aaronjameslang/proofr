@@ -9,13 +9,28 @@ find_scripts () {
   find . -perm -u=x -type f | grep --invert-match '\.git'
 }
 
-! have shellcheck    && have brew && brew install shellcheck
-  have shellcheck    && find_scripts | xargs shellcheck
+if ! have shellcheck && have brew
+then
+ brew install shellcheck
+fi
 
-! have checkbashisms && have brew && brew install checkbashisms
+if have shellcheck
+then
+  find_scripts | xargs shellcheck
+else
+  echo Skipping shellcheck, command not found
+fi
+
+if ! have checkbashisms && have brew
+then
+ brew install checkbashisms
+fi
+
 if have checkbashisms
 then
   find_scripts | xargs checkbashisms || true
+else
+  echo Skipping checkbashisms, command not found
 fi
 
 have roundup || brew install roundup
