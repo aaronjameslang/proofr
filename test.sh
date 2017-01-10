@@ -33,5 +33,15 @@ else
   echo Skipping checkbashisms, command not found
 fi
 
-have roundup || brew install roundup
-roundup test/*-test.sh
+if ! have roundup && have brew
+then
+ brew install roundup
+fi
+
+if have roundup
+then
+  roundup test/*-test.sh
+else
+  echo Failing roundup, command not found
+  exit 1
+fi
