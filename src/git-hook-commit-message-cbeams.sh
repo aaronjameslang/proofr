@@ -5,9 +5,9 @@ commit_message_file="$1"
 
 exit_code=0
 
-for rule in ./src/0*
+for index in $(seq 6)
 do
-  "$rule" "$commit_message_file" || exit_code=$(( exit_code + $? ))
+  "./src/0$index-"* "$commit_message_file" || exit_code=$(( exit_code + $? ))
 done
 
 exit "$exit_code"
