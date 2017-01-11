@@ -1,7 +1,7 @@
 #! /bin/sh
 set -eu
 
-rule="./rules/02-limit-subject.sh"
+rule="./src/02-limit-subject.sh"
 msg_dir=$PWD/test/messages
 
 it_passes_empty() {
