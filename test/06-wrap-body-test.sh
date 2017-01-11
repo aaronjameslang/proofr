@@ -26,5 +26,5 @@ it_passes_long_body() {
 
 it_fails_over_long_body() {
   output="$(! $rule "$msg_dir/over-long-body.msg")"
-  test "$output" == 'Wrap the body at 72 characters'
+  test "$output" = 'Wrap the body at 72 characters'
 }

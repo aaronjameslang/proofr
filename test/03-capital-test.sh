@@ -22,5 +22,5 @@ it_passes_perfect() {
 
 it_fails_lower_case() {
   output="$(! $rule "$msg_dir/lower-case.msg")"
-  test "$error_message" == "$output"
+  test "$error_message" = "$output"
 }

@@ -27,5 +27,5 @@ it_passes_perfect() {
 
 it_fails_body_only() {
   output="$(! $rule "$msg_dir/body-only.msg")"
-  test "$error_message" == "$output"
+  test "$error_message" = "$output"
 }

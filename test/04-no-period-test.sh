@@ -21,5 +21,5 @@ it_passes_perfect() {
 
 it_fails_period() {
   output="$(! $rule "$msg_dir/period.msg")"
-  test "$output" == 'Do not end the subject line with a period'
+  test "$output" = 'Do not end the subject line with a period'
 }
