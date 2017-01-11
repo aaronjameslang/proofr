@@ -1,9 +1,8 @@
 #! /bin/sh
 set -eu
 
-rule="./src/03-capital.sh"
+rule="./rules/02-limit-subject.sh"
 msg_dir=$PWD/test/messages
-error_message='Capitalize the subject line'
 
 it_passes_empty() {
   output="$($rule "$msg_dir/empty.msg")"
@@ -20,7 +19,12 @@ it_passes_perfect() {
   test -z "$output"
 }
 
-it_fails_lower_case() {
-  output="$(! $rule "$msg_dir/lower-case.msg")"
-  test "$error_message" = "$output"
+it_passes_long_subject() {
+  output="$($rule "$msg_dir/long-subject.msg")"
+  test -z "$output"
+}
+
+it_fails_too_long_subject() {
+  output="$(! $rule "$msg_dir/too-long-subject.msg")"
+  test -z "$output"
 }
