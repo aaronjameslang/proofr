@@ -31,7 +31,10 @@ validate() {
     5) # Subject does not begin with past tense
       head -n 1 "$commit_message_file" | grep --invert-match --quiet '^\w*ed\s' ;;
     6) # Body does not contain line longer than 73 characters
-      ./src/06-wrap-body.sh "$commit_message_file"
+      while read -r line
+      do
+        test 73 -ge "${#line}" || return 1 # TODO this return shouldn't be required
+      done < "$commit_message_file" ;;
   esac
 }
 
