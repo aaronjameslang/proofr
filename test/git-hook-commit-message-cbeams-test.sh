@@ -51,7 +51,11 @@ it_fails_over_long_body() {
 
 it_fails_worst() {
   output="$($rule "$msg_dir/worst.msg")" || exit_code=$?
-  test 10 -eq $exit_code
+  test 126 -eq $exit_code
   test "$output" = 'Separate subject from body with a blank line
-Capitalize the subject line'
+Limit the subject line to 50 characters
+Capitalize the subject line
+Do not end the subject line with a period
+Use the imperative mood in the subject line
+Wrap the body at 72 characters'
 }
