@@ -26,5 +26,5 @@ it_passes_long_subject() {
 
 it_fails_too_long_subject() {
   output="$(! $rule "$msg_dir/too-long-subject.msg")"
-  test -z "$output"
+  test "$output" = 'Limit the subject line to 50 characters'
 }

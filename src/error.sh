@@ -11,5 +11,4 @@ case $1 in
   7) echo Use the body to explain _what_ and _why_ vs. _how_ ;;
 esac
 
-exit_code=$(echo "2^$1" | bc)
-exit "$exit_code"
+exit $((1<<$1))
