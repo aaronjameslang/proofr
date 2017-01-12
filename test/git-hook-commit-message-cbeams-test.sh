@@ -43,6 +43,12 @@ it_fails_period() {
   test "$output" = 'Do not end the subject line with a period'
 }
 
+it_fails_paste_tense() {
+  output="$($rule "$msg_dir/past-tense.msg")" || exit_code=$?
+  test 32 -eq $exit_code
+  test "$output" = 'Use the imperative mood in the subject line'
+}
+
 it_fails_over_long_body() {
   output="$($rule "$msg_dir/over-long-body.msg")" || exit_code=$?
   test 64 -eq $exit_code
