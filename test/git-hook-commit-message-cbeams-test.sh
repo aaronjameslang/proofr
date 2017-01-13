@@ -43,6 +43,12 @@ it_fails_period() {
   test "$output" = 'Do not end the subject line with a period'
 }
 
+it_fails_paste_tense() {
+  output="$($rule "$msg_dir/past-tense.msg")" || exit_code=$?
+  test 32 -eq $exit_code
+  test "$output" = 'Use the imperative mood in the subject line'
+}
+
 it_fails_over_long_body() {
   output="$($rule "$msg_dir/over-long-body.msg")" || exit_code=$?
   test 64 -eq $exit_code
@@ -51,7 +57,11 @@ it_fails_over_long_body() {
 
 it_fails_worst() {
   output="$($rule "$msg_dir/worst.msg")" || exit_code=$?
-  test 10 -eq $exit_code
+  test 126 -eq $exit_code
   test "$output" = 'Separate subject from body with a blank line
-Capitalize the subject line'
+Limit the subject line to 50 characters
+Capitalize the subject line
+Do not end the subject line with a period
+Use the imperative mood in the subject line
+Wrap the body at 72 characters'
 }
