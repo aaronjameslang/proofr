@@ -15,7 +15,7 @@ test_message() {
   colour_reset=$(tput sgr0)
 
   actual_exit_code=0
-  actual_output="$(./src/git-hook-commit-message-cbeams.sh "./test-messages/$message.msg")" || actual_exit_code=$?
+  actual_output="$(./bin/git-hook-commit-message-cbeams "./test-messages/$message.msg")" || actual_exit_code=$?
   if test "$expected_exit_code" -ne "$actual_exit_code"
   then
     echo "${colour_red}failed${colour_reset}"
