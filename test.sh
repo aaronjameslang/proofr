@@ -34,6 +34,9 @@ test_message() {
 test_message empty
 test_message blank
 test_message perfect
+test_message long-subject
+test_message long-body
+test_message subject-only
 test_message body-only 2 'Separate subject from body with a blank line'
 test_message too-long-subject 4 'Limit the subject line to 50 characters'
 test_message lower-case 8 'Capitalize the subject line'
