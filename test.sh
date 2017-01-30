@@ -16,15 +16,15 @@ test_message() {
 
   actual_exit_code=0
   actual_output="$(./bin/git-hook-commit-message-cbeams "./test-messages/$message.msg")" || actual_exit_code=$?
-  if test "$expected_exit_code" -ne "$actual_exit_code"
-  then
-    echo "${colour_red}failed${colour_reset}"
-    echo "expected exit code $actual_exit_code to be $expected_exit_code"
-    number_of_failures=$((number_of_failures + 1))
-  elif test "$expected_output" != "$actual_output"
+  if test "$expected_output" != "$actual_output"
   then
     echo "${colour_red}failed${colour_reset}"
     echo "expected output $actual_output to be $expected_output"
+    number_of_failures=$((number_of_failures + 1))
+  elif test "$expected_exit_code" -ne "$actual_exit_code"
+  then
+    echo "${colour_red}failed${colour_reset}"
+    echo "expected exit code $actual_exit_code to be $expected_exit_code"
     number_of_failures=$((number_of_failures + 1))
   else
     echo "${colour_green}passed${colour_reset}"
