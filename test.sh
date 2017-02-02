@@ -40,11 +40,11 @@ test_message subject-only
 test_message merge-cli
 test_message merge-github
 test_message body-only 2 'Separate subject from body with a blank line'
-test_message too-long-subject 4 'Limit the subject line to 50 characters'
+test_message longer-subject 4 'Limit the subject line to 50 characters'
 test_message lower-case 8 'Capitalize the subject line'
 test_message period 16 'Do not end the subject line with a period'
 test_message past-tense 32 'Use the imperative mood in the subject line'
-test_message over-long-body 64 'Wrap the body at 72 characters'
+test_message longer-body 64 'Wrap the body at 72 characters'
 test_message worst 126 'Separate subject from body with a blank line
 Limit the subject line to 50 characters
 Capitalize the subject line
