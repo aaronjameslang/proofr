@@ -2,6 +2,18 @@
 set -eu
 
 commit_message_file="$1"
+commit_message_subject="$(head -n 1 "$commit_message_file")"
+
+grep_subject() {
+  echo "$commit_message_subject" | grep --quiet "$1"
+}
+
+if grep_subject '^Merge '
+then
+  is_merge=true
+else
+  is_merge=false
+fi
 
 rule() {
   case $1 in
@@ -24,14 +36,13 @@ validate() {
       test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
       test 51 -ge "$(< "$commit_message_file" head -n 1 | wc -m)" ||
-      head -n 1 "$commit_message_file" | grep --quiet '^Merge ' ;;
+      $is_merge ;;
     3) # Subject does not begin with lowercase letter
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '^[a-z]' ;;
+      ! grep_subject '^[a-z]' ;;
     4) # Subject does not end with a period
-      head -n 1 "$commit_message_file" | grep --quiet '^Merge ' ||
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '\.\s*$' ;;
+      $is_merge || ! grep_subject '\.\s*$' ;;
     5) # Subject does not begin with past tense
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '^\w*ed\s' ;;
+      ! grep_subject '^\w*ed\s' ;;
     6) # Body does not contain line longer than 73 characters
       tail -n +2 "$commit_message_file" | while read -r line
       do
