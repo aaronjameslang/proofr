@@ -4,6 +4,9 @@ set -eu
 commit_message_file="$1"
 commit_message_subject="$(head -n 1 "$commit_message_file")"
 
+# Pass if message is empty, exit early
+test 0 -eq "$(< "$commit_message_file" wc -l)" && exit
+
 grep_subject() {
   echo "$commit_message_subject" | grep --quiet "$1"
 }
@@ -28,8 +31,6 @@ rule() {
 }
 
 validate() {
-  # Pass if message is empty
-  test 0 -eq "$(< "$commit_message_file" wc -l)" && return
   case $1 in
     1) # Message has one line, or second line is blank
       test  1 -eq "$(< "$commit_message_file" wc -l)" ||
