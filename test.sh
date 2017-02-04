@@ -1,6 +1,15 @@
 #! /bin/sh
 set -eu
 
+shell="${1:-}"
+
+if test -n "$shell"
+then
+  echo "Testing using $shell"
+else
+  echo 'Testing using default shell'
+fi
+
 number_of_failures=0
 
 test_message() {
@@ -15,7 +24,7 @@ test_message() {
   colour_reset=$(tput sgr0)
 
   actual_exit_code=0
-  actual_output="$(./bin/git-hook-commit-message-cbeams "./test-messages/$message.msg")" || actual_exit_code=$?
+  actual_output="$($shell ./bin/git-hook-commit-message-cbeams "./test-messages/$message.msg")" || actual_exit_code=$?
   if test "$expected_output" != "$actual_output"
   then
     echo "${colour_red}failed${colour_reset}"
