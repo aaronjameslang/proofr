@@ -35,7 +35,7 @@ validate() {
       test  1 -eq "$(< "$commit_message_file" wc -l)" ||
       test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
-      test 51 -ge "$(< "$commit_message_file" head -n 1 | wc -m)" ||
+      test 51 -ge ${#commit_message_subject} ||
       $is_merge ;;
     3) # Subject does not begin with lowercase letter
       ! grep_subject '^[a-z]' ;;
