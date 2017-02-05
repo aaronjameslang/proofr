@@ -3,6 +3,7 @@ set -eu
 
 commit_message_file="$1"
 commit_message_subject="$(head -n 1 "$commit_message_file")"
+commit_message_body="$(tail -n +2 "$commit_message_file")"
 commit_message_line_count="$(< "$commit_message_file" wc -l)"
 # Pass if message is empty, exit early
 test 0 -eq "$commit_message_line_count" && exit
@@ -33,7 +34,7 @@ rule() {
 validate() {
   case $1 in
     1) # Message has one line, or second line is blank
-      test    -z  "$(< "$commit_message_file" tail -n +2 | head -n 1)" ;;
+      test    -z  "$(echo "$commit_message_body" | head -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
       test 51 -ge ${#commit_message_subject} ||
       $is_merge ;;
@@ -44,7 +45,7 @@ validate() {
     5) # Subject does not begin with past tense
       ! grep_subject '^\w*ed\s' ;;
     6) # Body does not contain line longer than 73 characters
-      tail -n +2 "$commit_message_file" | while read -r line
+      echo "$commit_message_body" | while read -r line
       do
         test 73 -ge "${#line}" || return 1 # TODO this return shouldn't be required
       done ;;
