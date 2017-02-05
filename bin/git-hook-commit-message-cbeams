@@ -3,9 +3,9 @@ set -eu
 
 commit_message_file="$1"
 commit_message_subject="$(head -n 1 "$commit_message_file")"
-
+commit_message_line_count="$(< "$commit_message_file" wc -l)"
 # Pass if message is empty, exit early
-test 0 -eq "$(< "$commit_message_file" wc -l)" && exit
+test 0 -eq "$commit_message_line_count" && exit
 
 grep_subject() {
   echo "$commit_message_subject" | grep --quiet "$1"
@@ -33,7 +33,7 @@ rule() {
 validate() {
   case $1 in
     1) # Message has one line, or second line is blank
-      test  1 -eq "$(< "$commit_message_file" wc -l)" ||
+      test  1 -eq "$commit_message_line_count" ||
       test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
       test 51 -ge ${#commit_message_subject} ||
