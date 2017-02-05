@@ -33,8 +33,7 @@ rule() {
 validate() {
   case $1 in
     1) # Message has one line, or second line is blank
-      test  1 -eq "$commit_message_line_count" ||
-      test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
+      test    -z  "$(< "$commit_message_file" tail -n +2 | head -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
       test 51 -ge ${#commit_message_subject} ||
       $is_merge ;;
