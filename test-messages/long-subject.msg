@@ -1,4 +1,4 @@
-Activate the parsnip, it is a hobbit parsnip, ....
+Activate the parsnip, it is a hobbit parsnip ... ?
 
  1. Acquire parsnip
  2. Acclimatise legumes
