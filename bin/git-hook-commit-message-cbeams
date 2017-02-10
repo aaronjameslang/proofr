@@ -29,7 +29,7 @@ validate() {
       head -n 1 "$commit_message_file" | grep --invert-match --quiet '^[a-z]' ;;
     4) # Subject does not end with a period
       head -n 1 "$commit_message_file" | grep --quiet '^Merge ' ||
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '\.$' ;;
+      head -n 1 "$commit_message_file" | grep --invert-match --quiet '\.\s*$' ;;
     5) # Subject does not begin with past tense
       head -n 1 "$commit_message_file" | grep --invert-match --quiet '^\w*ed\s' ;;
     6) # Body does not contain line longer than 73 characters

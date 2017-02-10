@@ -43,6 +43,7 @@ test_message body-only 2 'Separate subject from body with a blank line'
 test_message longer-subject 4 'Limit the subject line to 50 characters'
 test_message lower-case 8 'Capitalize the subject line'
 test_message period 16 'Do not end the subject line with a period'
+test_message period-ws 16 'Do not end the subject line with a period'
 test_message past-tense 32 'Use the imperative mood in the subject line'
 test_message longer-body 64 'Wrap the body at 72 characters'
 test_message worst 126 'Separate subject from body with a blank line
