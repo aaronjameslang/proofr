@@ -1,4 +1,4 @@
-all: sniff test
+all: sniff test test-shells
 
 benchmark:
 	perf stat -r 10 make test
@@ -8,5 +8,8 @@ sniff:
 
 test:
 	./test.sh
+
+test-shells:
+	./test-shells.sh
 
 .PHONY: test
