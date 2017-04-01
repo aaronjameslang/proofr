@@ -1,0 +1,23 @@
+{
+    "name": "aaronjameslang/git-hook-commit-message-cbeams",
+    "description": "Git hook to check conformance to http://chris.beams.io/posts/git-commit/",
+    "type": "project",
+    "keywords" : [
+        "commit",
+        "enforce",
+        "git",
+        "hook",
+        "lint",
+        "message",
+        "standards",
+        "style"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron J. Lang",
+            "email": "aaronjameslang@googlemail.com"
+        }
+    ],
+    "bin": ["bin/git-hook-commit-message-cbeams"]
+}
