@@ -11,6 +11,27 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
  6. Wrap the body at 72 characters
  7. Use the body to explain _what_ and _why_ vs. _how_
 
-## Development
+## Compatibility
 
-Requires `roundup` to run tests (https://bmizerany.github.io/roundup/)
+Please contribute by testing on your platform if it's not listed below!
+
+### Confirmed :thumbsup:
+
+  - Mac OSX, travis CI
+  - Debian, travis CI
+
+### Unsupported :no_entry_sign:
+
+  - Windows
+
+### Unknown :grey_question:
+
+  - Other *nixes, *BSDs, etc.
+
+## Contribution
+
+If you don't see your platform in the compatibility list above, please run the tests and let us know how you get on.
+
+### Design Decisions
+
+  - The tests were originally written using `roundup`, however this dependency was dropped to make it easier for users to run the tests on their machines
