@@ -11,6 +11,12 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
  6. Wrap the body at 72 characters
  7. Use the body to explain _what_ and _why_ vs. _how_
 
+## Installation
+
+### Composer/Packagist
+
+`composer [global] require `[`aaronjameslang/git-hook-commit-message-cbeams`](https://packagist.org/packages/aaronjameslang/git-hook-commit-message-cbeams)
+
 ## Compatibility
 
 Please contribute by testing on your platform if it's not listed below!
