@@ -32,3 +32,10 @@ then
 else
   echo Skipping checkbashisms, command not found
 fi
+
+if have composer
+then
+  composer validate --strict
+else
+  echo Skipping composer validate, command not found
+fi
