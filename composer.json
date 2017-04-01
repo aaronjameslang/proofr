@@ -19,6 +19,5 @@
             "email": "aaronjameslang@googlemail.com"
         }
     ],
-    "require": {},
     "bin": ["bin/git-hook-commit-message-cbeams"]
 }
