@@ -1,5 +1,5 @@
 {
-    "name": "aaronjameslang/git-hook-commit-message-cbeams",
+    "name": "aaronjameslang/proofr",
     "description": "Git hook to check conformance to http://chris.beams.io/posts/git-commit/",
     "type": "project",
     "keywords" : [
@@ -19,5 +19,5 @@
             "email": "aaronjameslang@googlemail.com"
         }
     ],
-    "bin": ["bin/git-hook-commit-message-cbeams"]
+    "bin": ["bin/proofr"]
 }

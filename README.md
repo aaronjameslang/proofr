@@ -1,4 +1,4 @@
-# git-hook-commit-message-cbeams [![Build Status](https://travis-ci.org/aaronjameslang/git-hook-commit-message-cbeams.svg)](https://travis-ci.org/aaronjameslang/git-hook-commit-message-cbeams)
+# proofr [![Build Status](https://travis-ci.org/aaronjameslang/proofr.svg)](https://travis-ci.org/aaronjameslang/proofr)
 Git hook to check conformance to http://chris.beams.io/posts/git-commit/
 
 ## The seven rules of a great git commit message
@@ -15,7 +15,7 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
 
 ### Composer/Packagist
 
-`composer [global] require `[`aaronjameslang/git-hook-commit-message-cbeams`](https://packagist.org/packages/aaronjameslang/git-hook-commit-message-cbeams)
+`composer [global] require `[`aaronjameslang/proofr`](https://packagist.org/packages/aaronjameslang/proofr)
 
 ## Compatibility
 
