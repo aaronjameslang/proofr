@@ -19,24 +19,13 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
 
 ## Compatibility
 
-Please contribute by testing on your platform if it's not listed below!
+Should work on most *nixes, including GNU/Linux, Mac OSX, and [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide)
 
-### Confirmed :thumbsup:
-
-  - Mac OSX, travis CI
-  - Debian, travis CI
-
-### Unsupported :no_entry_sign:
-
-  - Windows
-
-### Unknown :grey_question:
-
-  - Other *nixes, *BSDs, etc.
+If you are unsure of compatibilty with your system, run `make` or `test.sh`. If your system is incompatible, please open an issue.
 
 ## Contribution
 
-If you don't see your platform in the compatibility list above, please run the tests and let us know how you get on.
+Suggestions, bug reports and pull requests are all welcome. Please open an issue and get feedback before beginning a pull request.
 
 ### Design Decisions
 
