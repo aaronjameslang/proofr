@@ -20,7 +20,7 @@ validate() {
   test 0 -eq "$(< "$commit_message_file" wc -l)" && return
   case $1 in
     1) # Message has one line, or second line is blank
-      test  1 -eq "$(< "$commit_message_file" wc -l)" ||
+      test  1 -eq "$(< "$commit_message_file" grep -c '^[^#]')" ||
       test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
       test 51 -ge "$(< "$commit_message_file" head -n 1 | wc -m)" ||
