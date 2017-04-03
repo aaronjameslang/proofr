@@ -19,9 +19,9 @@ test_message() {
 
   printf 'Testing %s ... ' "$message"
 
-  colour_red=$(tput setaf 1)
-  colour_green=$(tput setaf 2)
-  colour_reset=$(tput sgr0)
+  colour_red=$(tput setaf 1 || true)
+  colour_green=$(tput setaf 2 || true)
+  colour_reset=$(tput sgr0 || true)
 
   actual_exit_code=0
   actual_output="$($shell ./bin/proofr "./test-messages/$message.msg")" || actual_exit_code=$?
