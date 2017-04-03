@@ -2,11 +2,29 @@
 set -eu
 
 commit_message_file="$1"
-commit_message_subject="$(head -n 1 "$commit_message_file")"
-commit_message_body="$(tail -n +2 "$commit_message_file")"
-commit_message_line_count="$(< "$commit_message_file" wc -l)"
+
+cleanup_commit_message () {
+  commit_message_file="$1"
+  while read -r line
+  do
+    if test "$line" = '# ------------------------ >8 ------------------------'
+    then
+      return
+    fi
+    if test "$( echo "$line" | cut -c 1)" = '#'
+    then
+      continue
+    fi
+    echo "$line"
+  done < "$commit_message_file"
+}
+
+commit_message="$(cleanup_commit_message "$commit_message_file")"
+commit_message_subject="$(echo "$commit_message" | head -n 1 )"
+commit_message_body="$(echo "$commit_message" | tail -n +2)"
+
 # Pass if message is empty, exit early
-test 0 -eq "$commit_message_line_count" && exit
+test -z "$commit_message" && exit
 
 grep_subject() {
   echo "$commit_message_subject" | grep --quiet "$1"
