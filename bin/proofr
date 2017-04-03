@@ -3,6 +3,40 @@ set -eu
 
 commit_message_file="$1"
 
+cleanup_commit_message () {
+  commit_message_file="$1"
+  while read -r line
+  do
+    if test "$line" = '# ------------------------ >8 ------------------------'
+    then
+      return
+    fi
+    if test "$( echo "$line" | cut -c 1)" = '#'
+    then
+      continue
+    fi
+    echo "$line"
+  done < "$commit_message_file"
+}
+
+commit_message="$(cleanup_commit_message "$commit_message_file")"
+commit_message_subject="$(echo "$commit_message" | head -n 1 )"
+commit_message_body="$(echo "$commit_message" | tail -n +2)"
+
+# Pass if message is empty, exit early
+test -z "$commit_message" && exit
+
+grep_subject() {
+  echo "$commit_message_subject" | grep --quiet "$1"
+}
+
+if grep_subject '^Merge '
+then
+  is_merge=true
+else
+  is_merge=false
+fi
+
 rule() {
   case $1 in
     1) echo Separate subject from body with a blank line ;;
@@ -16,24 +50,20 @@ rule() {
 }
 
 validate() {
-  # Pass if message is empty
-  test 0 -eq "$(< "$commit_message_file" wc -l)" && return
   case $1 in
     1) # Message has one line, or second line is blank
-      test  1 -eq "$(< "$commit_message_file" wc -l)" ||
-      test    -z  "$(< "$commit_message_file" head -n 2 | tail -n 1)" ;;
+      test    -z  "$(echo "$commit_message_body" | head -n 1)" ;;
     2) # Subject is no more than 51 characters (50 + newline)
-      test 51 -ge "$(< "$commit_message_file" head -n 1 | wc -m)" ||
-      head -n 1 "$commit_message_file" | grep --quiet '^Merge ' ;;
+      test 51 -ge ${#commit_message_subject} ||
+      $is_merge ;;
     3) # Subject does not begin with lowercase letter
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '^[a-z]' ;;
+      ! grep_subject '^[a-z]' ;;
     4) # Subject does not end with a period
-      head -n 1 "$commit_message_file" | grep --quiet '^Merge ' ||
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '\.\s*$' ;;
+      $is_merge || ! grep_subject '\.\s*$' ;;
     5) # Subject does not begin with past tense
-      head -n 1 "$commit_message_file" | grep --invert-match --quiet '^\w*ed\s' ;;
+      ! grep_subject '^\w*ed\s' ;;
     6) # Body does not contain line longer than 73 characters
-      tail -n +2 "$commit_message_file" | while read -r line
+      echo "$commit_message_body" | while read -r line
       do
         test 73 -ge "${#line}" || return 1 # TODO this return shouldn't be required
       done ;;
