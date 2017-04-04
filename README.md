@@ -11,11 +11,40 @@ Git hook to check conformance to http://chris.beams.io/posts/git-commit/
  6. Wrap the body at 72 characters
  7. Use the body to explain _what_ and _why_ vs. _how_
 
+## What `proofr` does
+
+If you write a good commit message, you won't even know it's there.
+
+If you write a poor commit message, the commit will fail and you'll receive feedback:
+
+```
+$: git commit --allow-empty --message 'fixed it.'
+Capitalize the subject line
+Do not end the subject line with a period
+Use the imperative mood in the subject line
+$:
+```
+
 ## Installation
 
-### Composer/Packagist
+### [Homebrew](https://brew.sh/)/[Linuxbrew](http://linuxbrew.sh/)
+
+`brew install `[`aaronjameslang/tap/proofr`](https://github.com/aaronjameslang/homebrew-tap/blob/master/Formula/proofr.rb)
+
+### [Composer](https://getcomposer.org/)/[Packagist](https://packagist.org/packages/aaronjameslang/proofr)
 
 `composer [global] require `[`aaronjameslang/proofr`](https://packagist.org/packages/aaronjameslang/proofr)
+
+## Setup
+
+```
+echo 'proofr "$@" || exit $?' >> my-project/.git/hooks/commit-msg
+chmod u+x my-project/.git/hooks/commit-msg
+```
+
+This assumes that you have your `PATH` set correctly. If you get `command not found: proofr` either fix your path or use a more specific path to `proofr`, e.g. `path/to/proofr "$@" || exit $?`
+
+For background see http://githooks.com
 
 ## Compatibility
 
