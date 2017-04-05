@@ -41,7 +41,13 @@ echo 'proofr "$@" || exit $?' >> my-project/.git/hooks/commit-msg
 chmod u+x my-project/.git/hooks/commit-msg
 ```
 
-This assumes that you have your `PATH` set correctly. If you get `command not found: proofr` either fix your path or use a more specific path to `proofr`, e.g. `path/to/proofr "$@" || exit $?`
+This should work most of the time, but assumes that you have your `PATH` set correctly. If you get `command not found: proofr` either fix your path or use a more specific path to `proofr`, e.g. `path/to/proofr "$@" || exit $?`
+
+After you've written your commit message, git will call `.git/hooks/commit-msg` and pass in the commit message as the first parameter. You can make `commit-msg` anything you like so long as it
+  - Calls `proofr`
+  - Passes `proofr` it's first argument
+  - Deals with `proofr`'s exit code
+  - Is executable
 
 For background see http://githooks.com
 
