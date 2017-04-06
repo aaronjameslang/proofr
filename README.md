@@ -37,12 +37,7 @@ $:
 
 ## Setup
 
-```
-echo 'proofr "$@" || exit $?' >> my-project/.git/hooks/commit-msg
-chmod u+x my-project/.git/hooks/commit-msg
-```
-
-This assumes that you have your `PATH` set correctly. If you get `command not found: proofr` either fix your path or use a more specific path to `proofr`, e.g. `path/to/proofr "$@" || exit $?`
+`cd my-project && proofr setup`
 
 For background see http://githooks.com
 
