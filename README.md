@@ -39,7 +39,7 @@ $:
 
 `cd my-project && proofr setup`
 
-For background see http://githooks.com
+This will add `proofr` to the `commit-msg` of your project. For background see http://githooks.com
 
 ## Compatibility
 
