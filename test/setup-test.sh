@@ -73,6 +73,8 @@ it_sets_up_hook_and_hook_works () {
   rm -f .git/hooks/commit-msg
   proofr setup
   test -x .git/hooks/commit-msg
+  git config user.name 'proofr test'
+  git config user.email 'test@proofr.com'
   actual="$(git commit --allow-empty --message 'Fix it')"
   echo "$actual" | grep --quiet '\[master (root-commit) [0-9a-f]\{7\}\] Fix it'
   actual="$(! git commit --allow-empty --message 'fixed it.' 2>&1)"
