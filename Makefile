@@ -17,8 +17,7 @@ test:
 	./test.sh
 
 test-libs:
-	#cd test && roundup
-	cd test && sh ./*
+	cd test && roundup || sh ./*-test.sh
 
 test-shells:
 	./test-shells.sh

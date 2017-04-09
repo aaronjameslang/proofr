@@ -24,45 +24,63 @@ it_matches_other_hook () {
 }
 
 it_sets_up_hook () {
-  export GIT_DIR
-  GIT_DIR="$(mktemp -d proofr-test-XXXX)"
-  file="$GIT_DIR/hooks/commit-msg"
-  mkdir "$(dirname "$file")"
+  cd "$(mktemp -d proofr-test-XXXX)"
+  git init
+  file=".git/hooks/commit-msg"
   echo banana > "$file"
-  ../bin/proofr setup
+  ../../bin/proofr setup
   actual="$(cat "$file")"
   expected='banana
-../bin/proofr "$@" || exit $?'
-  rm -rf "$GIT_DIR"
+../../bin/proofr "$@" || exit $?'
+  rm -rf "$PWD"
+  cd -
   test "$expected" = "$actual"
 }
 
 it_sets_up_missing_hook () {
-  export GIT_DIR
-  GIT_DIR="$(mktemp -d proofr-test-XXXX)"
-  file="$GIT_DIR/hooks/commit-msg"
-  mkdir "$(dirname "$file")"
-  echo banana > "$file"
-  ../bin/proofr setup
+  cd "$(mktemp -d proofr-test-XXXX)"
+  git init
+  file=".git/hooks/commit-msg"
+  rm -f "$file"
+  test -d "$(dirname "$file")"
+  ! test -f "$file"
+  ../../bin/proofr setup
+  test -x "$file"
   actual="$(cat "$file")"
-  expected='banana
-../bin/proofr "$@" || exit $?'
-  rm -rf "$GIT_DIR"
+  expected='../../bin/proofr "$@" || exit $?'
+  rm -rf "$PWD"
+  cd -
   test "$expected" = "$actual"
 }
 
-
 it_sets_up_exisiting_hook () {
-  export GIT_DIR
-  GIT_DIR="$(mktemp -d proofr-test-XXXX)"
-  file="$GIT_DIR/hooks/commit-msg"
-  mkdir "$(dirname "$file")"
+  cd "$(mktemp -d proofr-test-XXXX)"
+  git init
+  file=".git/hooks/commit-msg"
   echo banana proofr > "$file"
-  ../bin/proofr setup
+  ../../bin/proofr setup
   actual="$(cat "$file")"
   expected='banana proofr'
-  rm -rf "$GIT_DIR"
+  rm -rf "$PWD"
+  cd -
   test "$expected" = "$actual"
+}
+
+it_sets_up_hook_and_hook_works () {
+  cd "$(mktemp -d proofr-test-XXXX)"
+  git init
+  PATH="$PWD/../../bin/:$PATH"
+  rm -f .git/hooks/commit-msg
+  proofr setup
+  test -x .git/hooks/commit-msg
+  actual="$(git commit --allow-empty --message 'Fix it')"
+  echo "$actual" | grep --quiet '\[master (root-commit) [0-9a-f]\{7\}\] Fix it'
+  actual="$(! git commit --allow-empty --message 'fixed it.' 2>&1)"
+  test 'Capitalize the subject line
+Do not end the subject line with a period
+Use the imperative mood in the subject line' = "$actual"
+  rm -rf "$PWD"
+  cd -
 }
 
 if echo "$0" | grep --quiet -v 'roundup'
@@ -73,4 +91,5 @@ then
   it_sets_up_missing_hook
   it_sets_up_exisiting_hook
   it_does_not_match_no_hook
+  it_sets_up_hook_and_hook_works
 fi

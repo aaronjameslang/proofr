@@ -2,12 +2,13 @@
 set -eu
 
 setup() {
-  file="$GIT_DIR/hooks/commit-msg"
+  file='.git/hooks/commit-msg'
   if ( test -f "$file" && grep_for_proofr "$file" )
   then
     echo 'proofr already setup'
   else
     echo "$0" '"$@" || exit $?' >> "$file"
+    chmod u+x "$file"
   fi
 }
 
