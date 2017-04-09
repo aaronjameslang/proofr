@@ -3,7 +3,7 @@ all: build sniff test-libs test test-shells
 build: bin/proofr
 
 bin/proofr: $(wildcard lib/*)
-	mkdir bin
+	mkdir -p bin
 	echo '#! /bin/sh' | cat - lib/setup.sh lib/main.sh > bin/proofr
 	chmod u+x bin/proofr
 
