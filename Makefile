@@ -1,4 +1,4 @@
-all: sniff test test-shells
+all: sniff test-libs test test-shells
 
 benchmark:
 	perf stat -r 10 make test
@@ -8,6 +8,9 @@ sniff:
 
 test:
 	./test.sh
+
+test-libs:
+	cd test && roundup
 
 test-shells:
 	./test-shells.sh

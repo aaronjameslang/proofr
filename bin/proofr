@@ -1,10 +1,20 @@
 #! /bin/sh
 set -eu
 
+proofr_dir="$(dirname "$( readlink -f "$0")")/.."
+# shellcheck source=lib/setup.sh
+. "$proofr_dir/lib/setup.sh"
+
 if test 0 -eq "$#"
 then
   echo 'Read the README'
   exit 1
+fi
+
+if test 'setup' = "$1"
+then
+  setup
+  exit
 fi
 
 commit_message_file="$1"
