@@ -1,4 +1,4 @@
-# proofr [![Build Status](https://travis-ci.org/aaronjameslang/proofr.svg)](https://travis-ci.org/aaronjameslang/proofr)
+# proofr [![Build Status](https://travis-ci.org/aaronjameslang/proofr.svg?branch=master)](https://travis-ci.org/aaronjameslang/proofr)
 Git hook to check conformance to http://chris.beams.io/posts/git-commit/
 
 Do you or your collaborators have trouble remembering how to format your commit messages? Try `proofr`.
