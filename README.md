@@ -36,14 +36,13 @@ Do you or your collaborators have trouble remembering how to format your commit 
 
 ## Setup
 
-```
-echo 'proofr "$@" || exit $?' >> my-project/.git/hooks/commit-msg
-chmod u+x my-project/.git/hooks/commit-msg
-```
+`cd my-project && proofr setup`
 
-This should work most of the time, but assumes that you have your `PATH` set correctly. If you get `command not found: proofr` either fix your path or use a more specific path to `proofr`, e.g. `path/to/proofr "$@" || exit $?`
+This will add `proofr` to the `commit-msg` hook of your project
 
-After you've written your commit message, git will call `.git/hooks/commit-msg` and pass in the commit message as the first parameter. You can make `commit-msg` anything you like so long as it
+## How `proofr` works
+
+After each commit message you write, git will call `.git/hooks/commit-msg` and pass in the commit message as the first parameter. You can make `commit-msg` anything you like so long as it
   - Calls `proofr`
   - Passes `proofr` it's first argument
   - Deals with `proofr`'s exit code
@@ -55,7 +54,7 @@ For background see http://githooks.com
 
 Should work on most *nixes, including GNU/Linux, Mac OSX, and [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide)
 
-If you are unsure of compatibilty with your system, run `make` or `test.sh`. If your system is incompatible, please open an issue.
+If you are unsure of compatibilty with your system, run `make`. If your system is incompatible, please open an issue.
 
 ## Contribution
 
