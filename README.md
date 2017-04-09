@@ -38,7 +38,7 @@ Do you or your collaborators have trouble remembering how to format your commit 
 
 `cd my-project && proofr setup`
 
-This will add `proofr` to the `commit-msg` of your project
+This will add `proofr` to the `commit-msg` hook of your project
 
 ## How `proofr` works
 
@@ -54,7 +54,7 @@ For background see http://githooks.com
 
 Should work on most *nixes, including GNU/Linux, Mac OSX, and [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide)
 
-If you are unsure of compatibilty with your system, run `make` or `test.sh`. If your system is incompatible, please open an issue.
+If you are unsure of compatibilty with your system, run `test.sh` or `make`. If your system is incompatible, please open an issue.
 
 ## Contribution
 
