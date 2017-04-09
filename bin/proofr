@@ -1,6 +1,12 @@
 #! /bin/sh
 set -eu
 
+if test 0 -eq "$#"
+then
+  echo 'Read the README'
+  exit 1
+fi
+
 commit_message_file="$1"
 
 cleanup_commit_message () {
