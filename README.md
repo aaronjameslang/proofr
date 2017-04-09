@@ -54,7 +54,7 @@ For background see http://githooks.com
 
 Should work on most *nixes, including GNU/Linux, Mac OSX, and [Windows Subsystem for Linux](https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide)
 
-If you are unsure of compatibilty with your system, run `test.sh` or `make`. If your system is incompatible, please open an issue.
+If you are unsure of compatibilty with your system, run `make`. If your system is incompatible, please open an issue.
 
 ## Contribution
 
