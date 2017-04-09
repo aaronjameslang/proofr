@@ -81,8 +81,13 @@ it_sets_up_hook_and_hook_works () {
   test 'Capitalize the subject line
 Do not end the subject line with a period
 Use the imperative mood in the subject line' = "$actual"
-  rm -rf "$PWD"
-  cd -
+  # test from a subdirectory
+  mkdir fig
+  cd fig
+  git commit --allow-empty --message 'Fix it again'
+  ! git commit --allow-empty --message 'Fixed it again'
+  cd ../..
+  rm -rf "proofr-test-*"
 }
 
 if echo "$0" | grep --quiet -v 'roundup'
