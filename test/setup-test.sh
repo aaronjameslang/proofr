@@ -65,3 +65,12 @@ it_sets_up_exisiting_hook () {
   test "$expected" = "$actual"
 }
 
+if echo "$0" | grep --quiet -v 'roundup'
+then
+  it_matches_hook
+  it_sets_up_hook
+  it_matches_other_hook
+  it_sets_up_missing_hook
+  it_sets_up_exisiting_hook
+  it_does_not_match_no_hook
+fi
