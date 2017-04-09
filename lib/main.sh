@@ -1,9 +1,5 @@
-#! /bin/sh
+#! /bin/sh --version
 set -eu
-
-proofr_dir="$(dirname "$( readlink -f "$0")")/.."
-# shellcheck source=lib/setup.sh
-. "$proofr_dir/lib/setup.sh"
 
 if test 0 -eq "$#"
 then
